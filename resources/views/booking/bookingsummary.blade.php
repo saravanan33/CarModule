@@ -10,4 +10,5 @@
         <a class="btn btn-success" href="{{url('checkoutpage/'.Auth::user()->id)}}">next>></a>
     </div>
 </div>
+<div class=""></div>
     @endsection
