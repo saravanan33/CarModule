@@ -1,5 +1,6 @@
 @extends('layouts.app')
     @section('content')
+    {{hi}}
     <div class="container">
     @if(Session::has('success'))
     <div class="alert alert-success" role="alert">
@@ -49,5 +50,7 @@
         <input type="submit" value="Search"><br>
     </form> 
 </div>   
+
+<div class="">hi</div>
     <script type="text/javascript" src="{{asset('../js/ajax.js')}}"></script>
 @endsection
