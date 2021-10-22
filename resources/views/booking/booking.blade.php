@@ -1,5 +1,6 @@
 @extends('layouts.app')
     @section('content')
+    {{hi}}
     <div class="container">
     @if(Session::has('success'))
     <div class="alert alert-success" role="alert">
