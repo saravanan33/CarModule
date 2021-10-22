@@ -49,5 +49,7 @@
         <input type="submit" value="Search"><br>
     </form> 
 </div>   
+
+<div class="">hi</div>
     <script type="text/javascript" src="{{asset('../js/ajax.js')}}"></script>
 @endsection
