@@ -1,0 +1,19 @@
+#car{
+    background-color: rgb(37, 223, 198);
+}
+.title{
+    font: 2em sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    /* align-content: center;
+    align-items: center;
+    align-self: auto; */
+}
+#travel{
+    background-color: rgb(55, 238, 70);
+
+}
+.note{
+    font-size: 1.5ch;
+    color: rgb(241, 15, 15);
+}
