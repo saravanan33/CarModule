@@ -21,7 +21,7 @@
             @endforeach  </center>           
         </table>
        </div>
-   </div>
+   </div><center><br><a href="{{ url()->previous() }}" class="btn btn-danger">back</a></center>
 
       
         

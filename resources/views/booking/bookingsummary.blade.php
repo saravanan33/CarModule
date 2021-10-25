@@ -9,5 +9,5 @@
         </div>
         <a class="btn btn-success" href="{{url('checkoutpage/'.Auth::user()->id)}}">next>></a>
     </div>
-</div>
+</div><center><br><a href="{{ url()->previous() }}" class="btn btn-danger">back</a></center>
     @endsection

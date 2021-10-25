@@ -88,7 +88,7 @@ class RegisterController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'mobile'=>['required','numeric','min:6'],
-                // 'mobile_code'=>['required'],
+                'password_confirmation'=>['required', 'string', 'min:8', 'confirmed'],
             ]);
             $store=new User([
                 'name' => $datas['name'],

@@ -9,23 +9,36 @@ class LocationDetailsModel extends Model
 {
     use HasFactory;
     protected $table='location_details';
-    protected $fillable=['location_id',
-                          'location_name',
-                          'location_X_coordinate',
-                          'location_Y_coordinate',
-                          'location_image',
-                          'created_by',
-                          'updated_by'
-                        ];
-  public static function startId($input)
+    protected $fillable=[
+      'location_id',
+      'location_name',
+      'location_X_coordinate',
+      'location_Y_coordinate',
+      'location_image',
+      'created_by',
+      'updated_by'
+    ];
+  public static function searchId($input)
   {
-    $start=LocationDetailsModel::select('location_id','location_X_coordinate','location_Y_coordinate')->where('location_name',$input)->get();
-  //  print_r($start);exit;
-    return $start;
+    return LocationDetailsModel::select('location_id','location_X_coordinate','location_Y_coordinate','location_name')->where('location_name',$input)->get()->toArray();
   }
-  public static function endId($input)
+  public static function locationDetailsFunction()
   {
-    $end=LocationDetailsModel::select('location_id','location_X_coordinate','location_Y_coordinate')->where('location_name',$input)->get();
-   return $end;
+    return self::orderByDesc('updated_at')->get();
   }
+  public static function locationUpdateFunction($id)
+  {
+    return self::where('location_id','=',$id)->first();
+  }
+  public static function locationDeleteFunction($id)
+  {
+    return self::where('location_id',$id)->update([
+      'status'=>'D'
+    ]);
+  }
+  public static function bookingSearch($query)
+  {
+    return self::where('location_name', 'LIKE', "%".$query."%")->get();
+  }
+
 }

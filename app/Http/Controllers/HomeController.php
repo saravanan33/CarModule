@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -28,5 +29,16 @@ class HomeController extends Controller
     public function backToPage()
     {
         return view('admin.adminpage');
+    }
+    public function mainPage(){
+        if(Auth::user()->is_admin=="1"){
+            return view('admin.adminpage');
+        }
+        else{
+            return view('user.userlogin');
+        }
+    }
+    public function backFunction(){
+        return previous();
     }
 }
