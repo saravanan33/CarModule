@@ -29,7 +29,7 @@
             <button class='btn btn-success'>
                 <a class="btn btn-success" href="/availablecars">select car</a>
             </button>
-        </div>
+        </div><center><br><a href="{{ url()->previous() }}" class="btn btn-danger">back</a></center>
     </div>
       
         

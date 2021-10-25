@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,7 +7,7 @@ use App\Models\CarDetailsModel;
 class CarController extends Controller
 {
     public function carDetails(){
-        $cardetails=CarDetailsModel::orderByDesc('updated_at')->get();
+        $cardetails=CarDetailsModel::carDetailsFunction();
         return view('car.cardetails',compact('cardetails'));
     }
     public function carCreate(){
@@ -16,7 +15,6 @@ class CarController extends Controller
     }
     public function carStore(Request $request){
         $requests=$request->all();
-        // print_r($requests);exit;
         $request->validate([
             'car_name'=>'required|regex:/^[a-zA-Z]+$/u',
             'driver_id'=>'required|numeric',
@@ -24,10 +22,8 @@ class CarController extends Controller
             'car_gear'=>'required',
             'car_price_per_km'=>'required|numeric'
         ]);
-        if ($request->hasFile('car_image'))
-        {            
+        if ($request->hasFile('car_image')){            
             $a=$request->file('car_image')->store('car');
-            
             $object = new CarDetailsModel
             ([
                 "car_name"         => $request->get('car_name'),
@@ -44,26 +40,20 @@ class CarController extends Controller
                 "created_at"       => now(),
                 "updated_at"       => now()
             ]);
-            $object->save(); // Finally, save the record.
+            $object->save();
         }
         return back()->with('success','file uploaded successfully');
-
     }
     public function carDelete($id){
-        $cardelete=CarDetailsModel::where('car_id',$id)->update([
-            'status'=>'D'
-        ]);
-        // print_r($cardelete);exit;
+        $cardelete=CarDetailsModel::carDeleteFunction($id);
         return back()->with('delete','file deleted successfully');
     }
     public function carUpdate($id){
-        $carupdate=CarDetailsModel::where('car_id',$id)->first();
-        // print_r($carupdate);exit;
+        $carupdate=CarDetailsModel::carUpdateFunction($id);
         return view('car.carupdate',compact('carupdate'));
     }
     public function carUpdated(Request $request){
         $requests=$request->all();
-        // print_r($requests);exit;
         $request->validate([
             'car_name'=>'required|regex:/^[a-zA-Z]+$/u',
             'driver_id'=>'required|numeric',

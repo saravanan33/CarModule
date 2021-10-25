@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <a href='mainPage'>main page</a>
                 </div>
             </div>
         </div>

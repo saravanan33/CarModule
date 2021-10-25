@@ -1,0 +1,20 @@
+.image {
+    background-image: url('/image/cars.jpeg');
+    background-repeat: no-repeat;
+    background-size:     cover;                      
+    /* background-repeat:   no-repeat; */
+    background-position: center center;
+    background-attachment: fixed;
+    background-color: #fff;
+   
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+}
+.form{
+    backface-visibility: visible;
+    color: rgb(28, 212, 172);
+
+
+}

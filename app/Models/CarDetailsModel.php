@@ -26,4 +26,29 @@ class CarDetailsModel extends Model
                             'created_at',
                             'updated_at'
     ];
+    public static function  availableCars()
+    {
+        $availableCars=CarDetailsModel::where('car_availability','=','A')->get();
+        return $availableCars;
+
+    }
+    public static function carAvailability($id)
+    {
+        return CarDetailsModel::where('car_id',$id)->update(['car_availability'=>'B']);
+    }
+    public static function carDetailsFunction()
+    {
+        return self::orderByDesc('updated_at')->get();
+    }
+    public static function carDeleteFunction($id)
+    {
+        return self::where('car_id',$id)->update([
+            'status'=>'D'
+        ]);
+    }
+    public static function carUpdateFunction($id)
+    {
+        return self::where('car_id',$id)->first();
+    }
+    
 }

@@ -10,18 +10,18 @@ class LocationController extends Controller
 {
     public function locationDetails()
     {
-        $locationdetails=LocationDetailsModel::orderByDesc('updated_at')->get();
-        return view('location.locationdetails',compact('locationdetails'));  // view the locationdetails page
+        $locationdetails=LocationDetailsModel::locationDetailsFunction();
+        return view('location.locationdetails',compact('locationdetails')); 
     }
 
     public function locationCreate()
     {
-        return view('location.locationcreate');     // view the locationcreate page
+        return view('location.locationcreate');  
     }
      
     public function locationStore(Request $request)
     {
-        $requests=$request->all();                 // request all the file
+        $requests=$request->all();   
 
         $request->validate([
             'location_name'=>'required|regex:/^[a-zA-Z]+$/u',
@@ -43,14 +43,14 @@ class LocationController extends Controller
                 "created_at" => now(),
                 "updated_at" => now()
             ]);
-            $object->save(); // Finally, save the record.
+            $object->save();
         }
         return back()->with('success','file uploaded successfully');
     }
     public function locationUpdate($id)
     {
     
-        $locationupdate=LocationDetailsModel::where('location_id','=',$id)->first();
+        $locationupdate=LocationDetailsModel::locationUpdateFunction($id);
         return view('location.locationupdate',compact('locationupdate'));
         
     }
@@ -71,7 +71,6 @@ class LocationController extends Controller
                 'location_X_coordinate'  =>  $request->get('location_X_coordinate'),
                 'location_Y_coordinate'  =>  $request->get('location_Y_coordinate'),
                 'location_image'         =>  $a,
-                // 'created_by'             =>  $request->get('created_by'),
                 'updated_by'             =>  $request->get('updated_by'),
                 'created_at'             =>  now(),
                 'updated_at'             =>  now()
@@ -83,15 +82,13 @@ class LocationController extends Controller
     public function locationDelete($id)
     {
         
-        $delete=LocationDetailsModel::where('location_id',$id)->update([
-            'status'=>'D'
-        ]);
+        $delete=LocationDetailsModel::locationDeleteFunction($id);
         return back()->with('delete','file deleted successfully');
     }
     public function bookingStart(Request $request)
     {
         $query = $request->get('query');
-        $filter = LocationDetailsModel::where('location_name', 'LIKE', "%".$query."%")->get();
+        $filter = LocationDetailsModel::bookingSearch($query);
         $filterResult=array();
         foreach($filter as $fill)
         {
