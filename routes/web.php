@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\BookingModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
@@ -23,6 +22,7 @@ use App\Http\Controllers\Auth\RegisterController;
 */
 
 Route::get('/', function () {
+    // dd(BookingModel::all());
     return view('welcome');
 });
 
@@ -80,5 +80,5 @@ Route::get('bookingmail',[EmailController::class,'bookingMail']);
 Route::get('selectedcar/{id}/{price}',[BookingController::class,'selectedCar']);
 Route::get('checkoutpage/{id}',[BookingController::class,'checkOutPage']);
 Route::get('bookingconfirm/{id}',[BookingController::class,'bookingConfirm']);
-Route::get('mainPage',[HomeController::class,'mainPage']);
+Route::get('mainPage',[BookingController::class,'mainPage']);
 Route::get('backFunction',[HomeController::class,'backFunction']);
