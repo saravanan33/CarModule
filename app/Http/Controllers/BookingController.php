@@ -93,7 +93,8 @@ class BookingController extends Controller{
         if($bookingConfirmed){
             $tableJoin=BookingModel::joinData($id);
             $tableArr=$tableJoin->toArray();
-        foreach ($tableArr as $table) {
+        // print_r($tableJoin);exit;
+            foreach ($tableArr as $table) {
            foreach ($table as $key=>$values) {
                $data[$key]=$values;  
            }

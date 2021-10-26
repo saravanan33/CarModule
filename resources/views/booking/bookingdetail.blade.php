@@ -2,6 +2,7 @@
 @section('content')
     <div class="container">
         <div class="card">
+            {{print_r($tableJoin)}}{{exit}}
             @foreach ($tableJoin as $tableJoins)
             <div class="container">
                 <h3>Hi Mr/Mrs.{{$tableJoins->name}}</h3>

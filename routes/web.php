@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\BookingModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
@@ -41,6 +42,7 @@ Route::group(['prefix'=>'','namespace'=>'',],function(){
             Route::get('/locationdelete/{id}',[LocationController::class,'locationDelete']);
         });
 });
+
 Route::group(['prefix'=>'','namespace'=>'','middleware'=>['is_admin']],function(){
     Route::get('/driverdetails',[DriverController::class,'driverDetails']);
     Route::get('/drivercreate',[DriverController::class,'driverCreate']);
@@ -58,40 +60,22 @@ Route::group(['prefix'=>'','namespace'=>'','middleware'=>['is_admin']],function(
     Route::post('/carupdated',[CarController::class,'carUpdated'])->name('carupdated');
 });
 
-
 Route::group(['prefix'=>'' ,'namespace'=>''],function(){
-    Route::get('bookingpage',function(){
-        return view('booking.booking');
-    });
+    Route::get('bookingpage',function(){return view('booking.booking');});
     Route::get('bookingdata',[BookingController::class,'bookingData'])->name('bookingdata');
-    Route::get('availablecars',[BookingController::class,'availableCars']);
-        
+    Route::get('availablecars',[BookingController::class,'availableCars']);   
 });
 
 Route::group(['prefix'=>'','namespace'=>'','middleware'=>['is_admin']],function(){
     
-    Route::get('adminpage',function(){
-        return view('admin.adminpage');
-    })->name('adminpage');
-    
-    Route::get('/adminRegister',function(){
-        return view('admin.adminregister');
-    });
-
+    Route::get('adminpage',function(){return view('admin.adminpage');})->name('adminpage');
+    Route::get('/adminRegister',function(){return view('admin.adminregister');});
 });
-
-
-Route::get('userpage',function(){
-    return view('user.userlogin');
-})->name('userpage');
-
-
-
+Route::get('userpage',function(){return view('user.userlogin');})->name('userpage');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('bookingmail',[EmailController::class,'bookingMail']);
 Route::get('selectedcar/{id}/{price}',[BookingController::class,'selectedCar']);
 Route::get('checkoutpage/{id}',[BookingController::class,'checkOutPage']);
