@@ -103,4 +103,12 @@ class BookingController extends Controller{
         return view('booking.bookingsuccess')->with('success','mail send to your MailId');
         }
     }
+    public function mainPage(){
+        if(Auth::user()->is_admin=="1"){
+            return view('admin.adminpage');
+        }
+        else{
+            return view('user.userlogin');
+        }
+    }
 }

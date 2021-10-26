@@ -9,4 +9,4 @@
                         @endif
                     </h3>
 <h3>your date:{{$emails['date']}}</h3>
-<h3>your time{{$emails['time']}}</h3><center><br><a href="{{ url()->previous() }}" class="btn btn-danger">back</a></center>
+<h3>your time{{$emails['time']}}</h3>

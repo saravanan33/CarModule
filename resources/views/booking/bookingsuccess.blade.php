@@ -16,7 +16,7 @@
             <div class="alert alert-success" role="alert">
                 BOOKING SUCCESS... CHECK YOUR MAIL ID...
             </div>
-            <center><br><a href="mainPage" class="btn btn-danger">HOME</a></center>
+            <center><br><a href="/mainPage" class="btn btn-danger">HOME</a></center>
         </div>
     </div>
     @endsection
