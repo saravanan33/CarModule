@@ -12,12 +12,17 @@ use Illuminate\Support\Facades\Mail;
 class BookingController extends Controller{
     public function bookingData(Request $request){
         $input=$request->all();
+        // dd($input);
         $request->validate([
             'start'=>'required|regex:/^[a-zA-Z]+$/u',
             'end'=>'required|regex:/^[a-zA-Z]+$/u',
+            'rotation_trip'=>'required',
             'date'=>'required',
             'time'=>'required',
         ]);
+        // if($request->validate()){
+        //     dd($request);
+        // }
         $roundTrip=$input['rotation_trip'];
         $date=$input['date'];
         $time=$input['time'];
@@ -28,7 +33,13 @@ class BookingController extends Controller{
             return back()->with('fail','start and end location is should not be same');
         }
         $start=LocationDetailsModel::searchId($input['start']); 
+        if(count($start)==0){
+            return back()->with('fail','start location is not on the list');
+        }
         $end=LocationDetailsModel::searchId($input['end']);
+        if(count($end)==0){
+            return back()->with('fail','end location is not on the list');
+        }
         $startArray=array();
         foreach($start as $starts){
             foreach($starts as $key=>$values){
@@ -43,7 +54,7 @@ class BookingController extends Controller{
         }
         $distance=sqrt(pow(($endArray['location_X_coordinate']-$startArray['location_X_coordinate']),2)+pow(($endArray['location_Y_coordinate']-$startArray['location_Y_coordinate']),2));
         $totalDistance=intval($distance*$roundTrip);
-        $values=array('trip'=>$roundTrip,
+        $values=array(  'trip'=>$roundTrip,
                         'date'=>$date,
                         'time'=>$time,
                         'distance'=>$totalDistance,
