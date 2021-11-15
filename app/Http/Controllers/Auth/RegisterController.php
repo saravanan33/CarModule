@@ -50,12 +50,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // dd('validate');
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'mobile'=>['required','numeric','min:6'],
-            // 'mobile_code'=>['required'],
+            'mobile_code'=>['required'],
         ]);
     }
     
@@ -68,20 +69,22 @@ class RegisterController extends Controller
     protected function create(array $data)
     {   
         // print_r($data);exit;
+        // dd('create');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'mobile_code'=> $data ['mobile_code'],
             'mobile'=>$data['mobile'],
-            'is_admin'=>$data['is_admin'],      
+            'is_admin'=>$data['is_admin'],
+            'email_verified_at'=>now()      
 
         ]);
     }
     protected function admincreate(Request $datas)
     {   
-        // print_r($data->all());exit;
-        // $data=$datas->all();
+       
+        dd($datas);
         if(isset($datas)){
             $datas->validate([
                 'name' => ['required', 'string', 'max:255'],
@@ -94,9 +97,10 @@ class RegisterController extends Controller
                 'name' => $datas['name'],
                 'email' => $datas['email'],
                 'password' => Hash::make($datas['password']),
-                'mobile_code'=> $datas ['mobile_code'],
+                'mobile_code'=> '91',
                 'mobile'=>$datas['mobile'],
-                'is_admin'=>$datas['is_admin'],      
+                'is_admin'=>$datas['is_admin'],
+                   
     
             ]);
             $store->save();
