@@ -16,8 +16,11 @@ class BookingModel extends Model
                             'fare',
                             'status',
                             'created_at',
-                            'updated_at'];
-    public static function joinData($id){
+                            'updated_at'
+                        ];
+
+    public static function joinData($id)
+    {
        $join= BookingModel::select('*')
         ->where('booking_id',$id)
         ->join('users','booking_details.user_id','=','users.id')
@@ -26,10 +29,12 @@ class BookingModel extends Model
         ->get(); 
         return $join;
     }
+
     public static function confirmBooking($id)
     {
         return self::where('user_id',$id)->orderByDesc('created_at')->first();
     }
+
     public static function bookingSuccess($id)
     {
         return self::where('booking_id',$id)->update(['status'=>'A']);

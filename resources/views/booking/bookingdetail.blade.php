@@ -39,7 +39,7 @@
                 </div>
             </div>           
             @endforeach<br>
-            <center><a class="btn btn-success" href="{{url('bookingconfirm/'.$tableJoins->booking_id)}}">confirm</a></center>
+            {{-- <center><a class="btn btn-success" href="{{url('bookingconfirm/'.$tableJoins->booking_id)}}">confirm</a></center> --}}
         </div>
     </div>   
 @endsection

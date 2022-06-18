@@ -25,6 +25,7 @@
     <link rel="stylesheet" href='{{asset("/css/boot.css")}}'>
     <link rel="stylesheet" href='{{asset("/css/confirm.css")}}'>
     <link rel="stylesheet" href='{{asset("/css/normal.css")}}'>
+    <link rel="stylesheet" href='{{asset("/css/bookingpage.css")}}'>
     {{-- <link rel="stylesheet" href="{{asset('../css/bgimg.css')}}"> --}}
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

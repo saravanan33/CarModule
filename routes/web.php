@@ -1,9 +1,11 @@
 <?php
 
+// use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\BookingController;
@@ -21,8 +23,7 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::get('/', function () {
-    // dd(BookingModel::all());
+Route::get('/', function () {   
     return view('welcome');
 });
 
@@ -74,6 +75,7 @@ Route::group(['prefix'=>'','namespace'=>'','middleware'=>['is_admin']],function(
 Route::get('userpage',function(){return view('user.userlogin');})->name('userpage');
 
 Auth::routes();
+Route::post('admincreate',[AdminController::class,'adminCreate'])->middleware('is_admin')->name('admincreate');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('bookingmail',[EmailController::class,'bookingMail']);
