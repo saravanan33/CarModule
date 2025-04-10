@@ -40,13 +40,13 @@ class BookingController extends Controller{
         if(count($end)==0){
             return back()->with('fail','end location is not on the list');
         }
-        $startArray=array();
+        $startArray=[];
         foreach($start as $starts){
             foreach($starts as $key=>$values){
                 $startArray[$key]=$values;
             }
         }
-        $endArray=array();
+        $endArray=[];
         foreach($end as $starts){
             foreach($starts as $key=>$values){   
                 $endArray[$key]=$values;
@@ -54,13 +54,13 @@ class BookingController extends Controller{
         }
         $distance=sqrt(pow(($endArray['location_X_coordinate']-$startArray['location_X_coordinate']),2)+pow(($endArray['location_Y_coordinate']-$startArray['location_Y_coordinate']),2));
         $totalDistance=intval($distance*$roundTrip);
-        $values=array(  'trip'=>$roundTrip,
+        $values=[  'trip'=>$roundTrip,
                         'date'=>$date,
                         'time'=>$time,
                         'distance'=>$totalDistance,
                         'startLocationName'=>$startArray['location_name'],                 
                         'endLocationName'=>$endArray['location_name']
-                    );
+                    ];
         $travel=new TravelModel([
             'user_id'=>$userId,
             'start_location'=>$startLocation,
@@ -90,7 +90,7 @@ class BookingController extends Controller{
             'fare'=>$travelPrice,
         ]);
         $bookingStore->save(); 
-        $data=array('distance'=>$travelId->travel_distance,'fare'=>$travelPrice);
+        $data=['distance'=>$travelId->travel_distance,'fare'=>$travelPrice];
         return view('booking.bookingsummary',compact('data'));
     }
     public function checkOutPage($id){
