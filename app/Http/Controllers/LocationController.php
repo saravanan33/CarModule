@@ -89,7 +89,7 @@ class LocationController extends Controller
     {
         $query = $request->get('query');
         $filter = LocationDetailsModel::bookingSearch($query);
-        $filterResult=array();
+        $filterResult=[];
         foreach($filter as $fill)
         {
             $filterResult[]=$fill->location_name;
